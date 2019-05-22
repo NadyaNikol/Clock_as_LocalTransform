@@ -6,3 +6,4 @@ C:\Users\PKO\Desktop\343434\Clock_as_LocalTransform\WindowsFormsApp1\WindowsForm
 C:\Users\PKO\Desktop\343434\Clock_as_LocalTransform\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.Cache
 C:\Users\PKO\Desktop\343434\Clock_as_LocalTransform\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 C:\Users\PKO\Desktop\343434\Clock_as_LocalTransform\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\PKO\Desktop\343434\Clock_as_LocalTransform\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources

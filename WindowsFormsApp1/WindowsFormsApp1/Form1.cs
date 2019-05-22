@@ -14,18 +14,39 @@ namespace WindowsFormsApp1
 {
     public partial class Form1 : Form
     {
+        public float degree = DateTime.Now.Second*6;
+        public float degree2 = DateTime.Now.Minute*6;
+        Graphics graphics1 = null;
+        Timer timer = new Timer();
+        Timer timer2 = new Timer();
+
         public Form1()
         {
             InitializeComponent();
             Paint += Form1_Paint;
+            timer.Interval = 1000;
+            timer2.Interval = 360000;
+            timer.Tick += Timer_Tick;
+            timer.Start();
+            graphics1 = this.CreateGraphics();
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            degree += 6;
+            Invalidate();
+
+            if (degree%360 == 0)
+            {
+                degree2 += 6;
+            }
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics graphics1 = e.Graphics;
-            Graphics graphics2 = e.Graphics;
-            Graphics graphics3 = e.Graphics;
 
+            graphics1 = e.Graphics;
+            graphics1.SmoothingMode = SmoothingMode.HighQuality;
 
             Pen penBlack = new Pen(Brushes.Black, 5);
             Rectangle rect = new Rectangle(50, 50, 200, 200);
@@ -38,41 +59,18 @@ namespace WindowsFormsApp1
             graphics1.DrawLine(penBlack, 50, 150, 70, 150);
             graphics1.DrawLine(penBlack, 230, 150, 250, 150);
 
-            graphics1.DrawLine(penBlack, 100, 65, 110, 80);
-            graphics1.DrawLine(penBlack, 60, 110, 75, 120);
-
 
             penBlack.StartCap = LineCap.SquareAnchor;
             penBlack.EndCap = LineCap.ArrowAnchor;
-            graphics2.DrawLine(penBlack, 150, 150, 150, 100); // маленькая стрелка
-            graphics3.DrawLine(penBlack, 150, 150, 150, 80); // большая стрелка
-
 
             Matrix matrix = new Matrix();
-           
-
-            for (int i = 0; i < 36; i++)
-            {
-                matrix.Reset();
-                matrix.RotateAt(i*10, new PointF(150, 150));
-                graphics2.Transform = matrix;
-                graphics2.DrawLine(penBlack, 150, 150, 150, 80);
-
-                System.Threading.Thread.Sleep(1000);
-                
-            }
-
-
-
-            //graphics2.Transform = matrix;
-
-
-            penBlack?.Dispose();
-            graphics1?.Dispose();
-           graphics2?.Dispose();
-           // graphics3?.Dispose();
-
-                //Invalidate();
+            matrix.RotateAt(degree, new Point(150, 150));
+            graphics1.Transform = matrix;
+            graphics1.DrawLine(penBlack, 150, 150, 150, 80); // маленькая стрелка
+            matrix.Reset();
+            matrix.RotateAt(degree2, new Point(150, 150));
+            graphics1.Transform = matrix;
+            graphics1.DrawLine(penBlack, 150, 150, 150, 100); // большая стрелка
 
         }
     }
